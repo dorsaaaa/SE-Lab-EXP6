@@ -1,0 +1,10 @@
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/EnergyManager.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/Main.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/state/ActiveState.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/state/EcoModeState.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/state/ShutdownState.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/state/SystemState.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/strategy/GreenModePricingStrategy.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/strategy/PeakHoursPricingStrategy.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/strategy/PricingStrategy.java
+/Users/ali/project/SE_HW6/energy-manager/src/main/java/com/example/energymanager/strategy/StandardPricingStrategy.java
