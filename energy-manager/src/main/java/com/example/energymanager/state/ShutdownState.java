@@ -5,22 +5,22 @@ import com.example.energymanager.EnergyManager;
 public class ShutdownState implements SystemState {
     @Override
     public void activate(EnergyManager manager) {
-        System.out.println("سیستم در حال فعال شدن...");
+        System.out.println("Activating the system...");
         manager.setCurrentState(new ActiveState());
     }
 
     @Override
     public void setToEcoMode(EnergyManager manager) {
-        System.out.println("امکان تغییر به حالت اقتصادی از حالت خاموش وجود ندارد. ابتدا سیستم را فعال کنید.");
+        System.out.println("Cannot switch to Eco Mode from Shutdown state. Please activate the system first.");
     }
 
     @Override
     public void shutdown(EnergyManager manager) {
-        System.out.println("سیستم در حال حاضر خاموش است.");
+        System.out.println("System is already shut down.");
     }
 
     @Override
     public String getStatusDescription() {
-        return "خاموش (Shutdown): همه سیستم‌ها خاموش هستند.";
+        return "Shutdown: All systems are off.";
     }
 }

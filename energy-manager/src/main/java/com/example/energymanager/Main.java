@@ -25,26 +25,26 @@ public class Main {
                         changePricingPolicy(manager, scanner);
                         break;
                     case 3:
-                        System.out.println("\nوضعیت فعلی: " + manager.getCurrentStatusDescription());
+                        System.out.println("\nCurrent Status: " + manager.getCurrentStatusDescription());
                         break;
                     case 4:
-                        System.out.printf("\nکل مصرف تا این لحظه: %.2f واحد\n", manager.getTotalConsumption());
-                        System.out.printf("هزینه کل بر اساس تعرفه فعلی: %.2f تومان\n", manager.getTotalCost());
+                        System.out.printf("\nTotal consumption so far: %.2f units\n", manager.getTotalConsumption());
+                        System.out.printf("Total cost based on current policy: $%.2f\n", manager.getTotalCost());
                         break;
                     case 5:
-                        System.out.print("مقدار مصرف برای شبیه‌سازی (واحد): ");
+                        System.out.print("Enter consumption amount to simulate (units): ");
                         double units = scanner.nextDouble();
-                        System.out.printf("هزینه %.2f واحد مصرف: %.2f تومان\n", units, manager.simulateCost(units));
+                        System.out.printf("Cost for %.2f units: $%.2f\n", units, manager.simulateCost(units));
                         break;
                     case 0:
                         running = false;
-                        System.out.println("خروج از برنامه...");
+                        System.out.println("Exiting the program...");
                         break;
                     default:
-                        System.out.println("گزینه نامعتبر است!");
+                        System.out.println("Invalid option!");
                 }
             } catch (InputMismatchException e) {
-                System.out.println("خطا: لطفاً فقط عدد وارد کنید.");
+                System.out.println("Error: Please enter a number.");
                 scanner.next(); // Clear the invalid input
             }
             System.out.println("------------------------------------");
@@ -53,41 +53,41 @@ public class Main {
     }
 
     private static void printMenu() {
-        System.out.println("\n*** سیستم مدیریت انرژی هوشمند ***");
-        System.out.println("1. تغییر وضعیت سیستم (مخصوص مدیر)");
-        System.out.println("2. تغییر سیاست محاسبه هزینه (مخصوص مدیر)");
-        System.out.println("3. مشاهده وضعیت فعلی سیستم");
-        System.out.println("4. مشاهده هزینه کل مصرف انرژی");
-        System.out.println("5. شبیه‌سازی هزینه مصرف");
-        System.out.println("0. خروج");
-        System.out.print("لطفا گزینه مورد نظر را انتخاب کنید: ");
+        System.out.println("\n*** Smart Energy Management System ***");
+        System.out.println("1. Change System State (Admin)");
+        System.out.println("2. Change Pricing Policy (Admin)");
+        System.out.println("3. View Current System Status");
+        System.out.println("4. View Total Energy Cost");
+        System.out.println("5. Simulate Consumption Cost");
+        System.out.println("0. Exit");
+        System.out.print("Please select an option: ");
     }
 
     private static void changeSystemState(EnergyManager manager, Scanner scanner) {
-        System.out.println("\nکدام وضعیت را انتخاب می‌کنید؟");
-        System.out.println("1. فعال (Active)");
-        System.out.println("2. اقتصادی (Eco)");
-        System.out.println("3. خاموش (Shutdown)");
+        System.out.println("\nWhich state do you want to select?");
+        System.out.println("1. Active");
+        System.out.println("2. Eco Mode");
+        System.out.println("3. Shutdown");
         int stateChoice = scanner.nextInt();
         switch (stateChoice) {
             case 1: manager.activate(); break;
             case 2: manager.setToEcoMode(); break;
             case 3: manager.shutdown(); break;
-            default: System.out.println("انتخاب نامعتبر.");
+            default: System.out.println("Invalid selection.");
         }
     }
 
     private static void changePricingPolicy(EnergyManager manager, Scanner scanner) {
-        System.out.println("\nکدام سیاست تعرفه را انتخاب می‌کنید؟");
-        System.out.println("1. تعرفه معمولی (Standard)");
-        System.out.println("2. تعرفه زمان اوج مصرف (Peak Hours)");
-        System.out.println("3. تعرفه سبز (Green)");
+        System.out.println("\nWhich pricing policy do you want to select?");
+        System.out.println("1. Standard Tariff");
+        System.out.println("2. Peak Hours Tariff");
+        System.out.println("3. Green Mode Tariff");
         int policyChoice = scanner.nextInt();
         switch (policyChoice) {
             case 1: manager.setPricingStrategy(new StandardPricingStrategy()); break;
             case 2: manager.setPricingStrategy(new PeakHoursPricingStrategy()); break;
             case 3: manager.setPricingStrategy(new GreenModePricingStrategy()); break;
-            default: System.out.println("انتخاب نامعتبر.");
+            default: System.out.println("Invalid selection.");
         }
     }
 }
