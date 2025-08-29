@@ -31,7 +31,8 @@ public class ParseTable {
         }
     }
 
-    private void processHeader(String headerRow, Map<Integer, Token> terminals, Map<Integer, NonTerminal> nonTerminals) {
+    private void processHeader(String headerRow, Map<Integer, Token> terminals,
+            Map<Integer, NonTerminal> nonTerminals) {
         headerRow = headerRow.substring(1, headerRow.length() - 1);
         String[] columns = headerRow.split("\",\"");
 
@@ -49,7 +50,8 @@ public class ParseTable {
         }
     }
 
-    private void processRow(String row, Map<Integer, Token> terminals, Map<Integer, NonTerminal> nonTerminals) throws Exception {
+    private void processRow(String row, Map<Integer, Token> terminals, Map<Integer, NonTerminal> nonTerminals)
+            throws Exception {
         row = row.substring(1, row.length() - 1);
         String[] columns = row.split("\",\"");
 
@@ -59,16 +61,14 @@ public class ParseTable {
         for (int j = 1; j < columns.length; j++) {
             if (!columns[j].equals("")) {
                 if (columns[j].equals("acc")) {
-                    actionTable.get(actionTable.size() - 1)
-                            .put(terminals.get(j), new Action(act.accept, 0));
+                    actionTable.get(actionTable.size() - 1).put(terminals.get(j), new Action(act.accept, 0));
                 } else if (terminals.containsKey(j)) {
                     Token t = terminals.get(j);
                     Action a = new Action(columns[j].charAt(0) == 'r' ? act.reduce : act.shift,
                             Integer.parseInt(columns[j].substring(1)));
                     actionTable.get(actionTable.size() - 1).put(t, a);
                 } else if (nonTerminals.containsKey(j)) {
-                    gotoTable.get(gotoTable.size() - 1).put(nonTerminals.get(j),
-                            Integer.parseInt(columns[j]));
+                    gotoTable.get(gotoTable.size() - 1).put(nonTerminals.get(j), Integer.parseInt(columns[j]));
                 } else {
                     throw new Exception();
                 }

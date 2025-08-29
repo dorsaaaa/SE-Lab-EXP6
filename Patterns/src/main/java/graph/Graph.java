@@ -8,6 +8,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.stream.Collectors;
 
+import org.javatuples.Pair;
+
 public class Graph {
     @Getter
     private ArrayList<Node> graph;
@@ -33,8 +35,7 @@ public class Graph {
                 frontNode.setVisited(true);
                 int distance = front.getValue1();
                 frontNode.setDistance(distance);
-                nodes.addAll(frontNode.getAvailableNeighbors()
-                        .stream()
+                nodes.addAll(frontNode.getAvailableNeighbors().stream()
                         .map(neighbor -> new Pair<Node, Integer>(neighbor, distance + 1))
                         .collect(Collectors.toCollection(ArrayList::new)));
             }
@@ -53,10 +54,8 @@ public class Graph {
                 frontNode.setVisited(true);
                 int distance = front.getValue0();
                 frontNode.setDistance(distance);
-                nodes.addAll(frontNode.getAvailableWeightedNeighbors()
-                        .stream()
-                        .map(neighbor -> new Pair<Integer, Node>(neighbor.getValue1() + distance,
-                                neighbor.getValue0()))
+                nodes.addAll(frontNode.getAvailableWeightedNeighbors().stream()
+                        .map(neighbor -> new Pair<Integer, Node>(neighbor.getValue1() + distance, neighbor.getValue0()))
                         .collect(Collectors.toCollection(PriorityQueue::new)));
             }
         }

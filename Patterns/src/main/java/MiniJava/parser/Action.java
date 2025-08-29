@@ -16,19 +16,25 @@ public class Action {
     @Override
     public String toString() {
         switch (action) {
-            case accept: return "acc";
-            case shift: return SHIFT_PREFIX + number + "";
-            case reduce: return REDUCE_PREFIX + number + "";
+            case accept :
+                return "acc";
+            case shift :
+                return SHIFT_PREFIX + number + "";
+            case reduce :
+                return REDUCE_PREFIX + number + "";
         }
         return action.toString() + number;
     }
 
     public static Action fromString(String s) {
-        if (s.equals("acc")) return new Action(act.accept, ACCEPT_NUMBER);
+        if (s.equals("acc"))
+            return new Action(act.accept, ACCEPT_NUMBER);
         char type = s.charAt(0);
         int number = Integer.parseInt(s.substring(1));
         return new Action(type == REDUCE_PREFIX ? act.reduce : act.shift, number);
     }
 }
 
-enum act { shift, reduce, accept }
+enum act {
+    shift, reduce, accept
+}
