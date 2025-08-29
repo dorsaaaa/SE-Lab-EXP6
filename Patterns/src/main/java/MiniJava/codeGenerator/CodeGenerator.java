@@ -157,33 +157,24 @@ public class CodeGenerator {
         }
     }
 
-    public void pid(Token next) {
+    public Address resolvePid(Token next) {
         if (symbolStack.size() > 1) {
-            String methodName = symbolStack.pop();
-            String className = symbolStack.pop();
+            String methodName = symbolStack.peek();
+            String className = symbolStack.get(symbolStack.size() - 2);
             try {
-
                 Symbol s = symbolTable.get(className, methodName, next.value);
-                varType t = varType.Int;
-                switch (s.type) {
-                    case Bool:
-                        t = varType.Bool;
-                        break;
-                    case Int:
-                        t = varType.Int;
-                        break;
-                }
-                ss.push(new Address(s.address, t));
-
-
+                varType t = (s.type == SymbolType.Bool) ? varType.Bool : varType.Int;
+                return new Address(s.address, t);
             } catch (Exception e) {
-                ss.push(new Address(0, varType.Non));
+                return new Address(0, varType.Non);
             }
-            symbolStack.push(className);
-            symbolStack.push(methodName);
         } else {
-            ss.push(new Address(0, varType.Non));
+            return new Address(0, varType.Non);
         }
+    }
+    
+    public void pid(Token next) {
+        ss.push(resolvePid(next));
         symbolStack.push(next.value);
     }
 
